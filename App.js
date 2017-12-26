@@ -3,8 +3,10 @@ import { StyleSheet, View, StatusBar } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import Greeting from './components/Greeting';
 import Search from './components/Search';
+import Geo from './components/Geo';
 
 const Tabs = TabNavigator({
+  Geo: {screen: Geo},
   Search: {screen: Search},
   Greeting: {screen: Greeting}
 },{
