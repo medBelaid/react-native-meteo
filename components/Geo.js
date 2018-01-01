@@ -7,7 +7,6 @@ import style from '../style'
 export default class Geo extends Component {
 
   static navigationOptions = {
-    title: 'Map',
     tabBarIcon: () => {
       return <Image source={require("../imgs/geo.png")} style={{width: 20, height:20}} />
     }
@@ -30,6 +29,9 @@ export default class Geo extends Component {
   }
 
   render() {
+    const description = 'Dailymotion attire 300 millions' +
+    'd’utilisateurs qui regardent 3,5 milliards' +
+    'de vidéos sur son player chaque mois, à travers le monde.';
     return (
       <View style={style.container}>
         <MapView
@@ -45,7 +47,7 @@ export default class Geo extends Component {
             coordinate={{latitude: 48.8820177, longitude: 2.2938669}}
             image={require("../imgs/dailymotion.png")}
             title={'Dailymotion'}
-            description={'Dailymotion attire 300 millions d’utilisateurs qui regardent 3,5 milliards de vidéos sur son player chaque mois, à travers le monde.'}
+            description={description}
           />
           <MapView.Marker
             coordinate={{latitude: 48.8795757, longitude: 2.2441687}}
@@ -54,10 +56,22 @@ export default class Geo extends Component {
             description={'cabinet spécialisé dans l\'embauche en CDI de développeurs web et/ou mobiles. Nous avons de nombreux postes à pourvoir. '}
           />
           <MapView.Marker
-            coordinate={{latitude: 48.882774, longitude: 2.2811775}}
+            coordinate={{latitude: 48.8827705, longitude: 2.3162018}}
             image={require("../imgs/link.png")}
-            title={'link-value'}
+            title={'Link-value'}
             description={'Que serait l’innovation, sans les individus qui la conçoivent et la vivent ?'}
+          />
+          <MapView.Marker
+            coordinate={{latitude: 48.8824019, longitude: 2.2691062}}
+            image={require("../imgs/sunevit.png")}
+            title={'Sunevit'}
+            description={'Que serait l’innovation, sans les individus qui la conçoivent et la vivent ?'}
+          />
+          <MapView.Marker
+            coordinate={{latitude: 48.915478, longitude: 2.332398}}
+            image={require("../imgs/venteprive.png")}
+            title={'Vente Privée'}
+            description={'VOTRE SHOPPING 24/24H EN TOUTE SÉRÉNITÉ'}
           />
         </MapView>
       </View>
