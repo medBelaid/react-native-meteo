@@ -17,13 +17,17 @@ export default class Greeting extends React.Component {
   }
   render() {
     const date = moment().format("dddd DD-MM-YYYY");
-    let janvier = moment('2018-01-26').diff(moment(), 'days');
+    let numOfMonths = moment('2018-08-25').diff(moment(), 'months');
+    let numOfDays = moment('2018-08-25').diff(moment(), 'days');
+    const today = moment().format('DD');
+    const diffDays = numOfDays - numOfMonths * 30;
 
     return (
       <View style={style.container}>
         <Text>Hello Mohamed Belaid!</Text>
         <Text style={{ fontSize: 20 }}>{date}</Text>
-        <Text style={{ fontSize: 20 }}>il reste {janvier} jours et je serai marié</Text>
+        <Text style={{ fontSize: 20 }}>il reste {numOfMonths} mois et {diffDays} jours</Text>
+        <Text style={{ fontSize: 20 }}>et je serai marié :)</Text>
         <Button
           onPress={this.onPressGoHome}
           title="Go Home"

@@ -17,7 +17,7 @@ export default class FadeInView extends React.Component {
       this.state.pan,            // The animated value to drive
       {
         toValue: {x:0, y:0},         // Animate to opacity: {x:0, y:0} (opaque)
-        duration: 500,              // Make it take a while
+        duration: 300,              // Make it take a while
       }
     ).start();                        // Starts the animation
 
@@ -25,7 +25,7 @@ export default class FadeInView extends React.Component {
       this.state.fadeAnim,            // The animated value to drive
       {
         toValue: 1,         // Animate to opacity: {x:0, y:0} (opaque)
-        duration: 500,              // Make it take a while
+        duration: 300,              // Make it take a while
       }
     ).start();
   }
