@@ -10,6 +10,9 @@ export default class Page2 extends React.Component {
       return <Image source={require("../../imgs/translate.png")} style={{width: 25, height:25}} />
     }
   }
+  componentDidMount() {
+    console.log('params user', this.props.navigation.state.params);
+  }
   render() {
     return (
       <View style={style.container}>

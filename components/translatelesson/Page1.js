@@ -28,20 +28,10 @@ export default class Page1 extends React.Component {
 
   componentDidMount() {
 
-    this.fireBaseListener = firebase.auth().onAuthStateChanged(auth => {
-      if (auth) {
-        this.firebaseRef = firebase.database().ref('users')
-        this.firebaseRef.child(auth.uid).on('value', snap => {
-          const user = snap.val()
-          if (user != null) {
-            Alert.alert('user');
-            this.setState({user});
-            this.firebaseRef.child(auth.uid).off('value')
-            this.onPressGoHome(user)
-          }
-        })
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.onPressGoHome(user)
       } else {
-        Alert.alert('error auth');
         this.setState({ showSpinner: false })
       }
     })
@@ -73,17 +63,16 @@ export default class Page1 extends React.Component {
     });
   };
 
-  onPressGoHome = () => {
+  onPressGoHome = (user) => {
     firebase.auth().signInAnonymously()
     .then((data) => {
       console.log('login successfuly', data);
       Alert.alert('login successfuly');
       this.setState({isAuthenticated: true});
-      const user = this.state.user;
       const resetAction = NavigationActions.reset({
         index: 0,
         actions: [
-          NavigationActions.navigate({ routeName: 'Page2', params: "hamdoulah" }),
+          NavigationActions.navigate({ routeName: 'Page2', params: user }),
         ],
       })
       this.props.navigation.dispatch(resetAction)
@@ -93,6 +82,25 @@ export default class Page1 extends React.Component {
       Alert.alert('error auth');
     });
   }
+
+  async logInFacebook() {
+    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('134464790675685', {
+        permissions: ['public_profile'],
+      });
+    if (type === 'success') {
+      const credential = firebase.auth.FacebookAuthProvider.credential(token);
+      firebase.auth().signInWithCredential(credential)
+      .catch((error) => {console.log(error);});
+      // Get the user's name using Facebook's Graph API
+      const response = await fetch(
+        `https://graph.facebook.com/me?access_token=${token}`);
+      Alert.alert(
+        'Logged in!',
+        `Hi ${(await response.json()).name}!`,
+      );
+    }
+  }
+
 
   render() {
     return (
@@ -109,22 +117,20 @@ export default class Page1 extends React.Component {
                color="#841584"
              />
           </View>
-          <View style={style.buttonContainer}>
+          <View style={{margin: 20}}>
+            <Button
+               onPress={this.logInFacebook}
+               title="Login With Facebook"
+               color="#494299"
+             />
+          </View>
+          <View style={{margin: 20}}>
             <Button
                onPress={this.onRegister}
                title="Register"
                color="#841584"
              />
           </View>
-        </View>
-        <Text>une goutte de sueur couler sous votre chemise quatre</Text>
-        <View style={style.buttonContainer}>
-          <Button
-            onPress={this.onPressGoHome}
-            title="Go Home"
-            color={style.red}
-            accessibilityLabel="Learn more about this purple button"
-          />
         </View>
       </View>
     );
