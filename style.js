@@ -19,5 +19,8 @@ export default {
     right: 0,
     bottom: 0,
     position: 'absolute'
+  },
+  buttonContainer: {
+    margin: 20
   }
 };
