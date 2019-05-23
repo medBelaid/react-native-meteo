@@ -1,5 +1,9 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "name": "Meteo",
+    "version": "1.0.0",
+    "slug": "first application react native",
+    "sdkVersion": "23.0.0",
+    "privacy": "public"
   }
 }

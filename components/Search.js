@@ -21,6 +21,10 @@ class Search extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log('params user', this.props.navigation.state.params);
+  }
+
   onPressLearnMore = () => {
     console.log('ok');
     ToastAndroid.showWithGravityAndOffset(
